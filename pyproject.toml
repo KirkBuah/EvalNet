@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "EvalNet"
+version = "1.0.0"
+authors = [
+  { name="Maciej Besta", email="maciej.besta@inf.ethz.ch" },
+  { name="Marcel Schneider" },
+  { name="Alessandro Maissen" },
+  { name="Jascha Krattenmacher" },
+  { name="Kartik Lakhotia" },
+  { name="Robert Gerstenberger", email="gerstenberger.robert@gmail.com" },
+]
+description = "Python package for EvalNet"
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.9,<3.13"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "ggplot==0.11.5",
+  "matplotlib>=3.9.4",
+  "networkx>=3.2.1",
+  "numpy>=2.0.2",
+  "pandas==2.3.0",
+  "scipy>=1.13.1",
+  "sympy==1.14.0"
+]
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  "analysis",
+  "topogen",
+  "tools"
+]
+
+[project.urls]
+Homepage = "https://github.com/spcl/EvalNet"
