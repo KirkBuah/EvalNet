@@ -47,9 +47,9 @@ following citation:
 Maciej Besta, Patrick Iff, Marcel Schneider, Nils Blach, Alessandro
 Maissen, Salvatore Di Girolamo, Jens Domke, Jascha Krattenmacher, Ankit
 Singla, Kartik Lakhotia, Laura Monroe, Fabrizio Petrini, Robert
-Gerstenberger, Torsten Hoefler: EvalNet: A Practical Toolchain for
-Generation and Analysis of Extreme-Scale Interconnects. In: arXiv
-preprint arXiv:2505.
+Gerstenberger, Torsten Hoefler (2025): EvalNet: A Practical Toolchain
+for Generation and Analysis of Extreme-Scale Interconnects. In: arXiv
+preprint arXiv:2105.12663
 -----------------------------------------------------------------------
 
 EvalNet uses code from SQLite (https://sqlite.org), which is released as

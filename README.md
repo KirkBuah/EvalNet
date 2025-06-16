@@ -4,7 +4,7 @@
   <img src="paper/pics/topology_overview.svg" width="95%">
 </p>
 
-This is the official implementation of [EvalNet: A Practical Toolchain for Generation and Analysis of Extreme-Scale Interconnects](http://arxiv.org/abs/2506.).
+This is the official implementation of [EvalNet: A Practical Toolchain for Generation and Analysis of Extreme-Scale Interconnects](http://arxiv.org/abs/2105.12663).
 
 EvalNet is a toolchain for scalable generation and analysis over 25 important network topologies, such as Slim Fly, PolarFly, and Orthogonal Fat Trees, with a strong focus on path diversity metrics.
 EvalNet provides an extensive and fine-grained analysis of shortest and non-shortest paths, including their multiplicities, lengths, and interference.
@@ -199,9 +199,9 @@ When using EvalNet in your work, please reference us with the citation provided 
   author = {Besta, Maciej and Patrick Iff and Marcel Schneider and Nils Blach and Alessandro Maissen and Salvatore Di Girolamo and Jens Domke and Jascha Krattenmacher and Ankit Singla and Kartik Lakhotia and Laura Monroe and Fabrizio Petrini and Robert Gerstenberger and Hoefler, Torsten},
   year = 2025,
   month = Jun,
-  doi = {10.48550/arXiv.2506.},
-  url = {http://arxiv.org/abs/2506.},
+  doi = {10.48550/arXiv.2105.12663},
+  url = {http://arxiv.org/abs/2105.12663},
   eprinttype = {arXiv},
-  eprint = {2506.}
+  eprint = {2105.12663}
 }
 ```
