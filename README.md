@@ -25,10 +25,12 @@ cd EvalNet
 pip install .
 apt-get install libsqlite3-dev
 cd analysis
+edit Makefile
 make
 ```
 Our analysis code depends on libsqlite3, so please install its development files (header, static libraries) via your distributions packet manager.
-If necessary, please update the C compiler (default: gcc) before compiling the source code in the `analysis` directory.
+Before compiling the source code in the [analysis](analysis) directory, please update the Python version (`PYTHON_VERSION`, default: 3.9) in [analysis/Makefile](analysis/Makefile).
+If necessary, please update the C compiler (default: `gcc`) as well.
 
 
 ## Usage
