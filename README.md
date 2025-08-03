@@ -29,7 +29,7 @@ edit Makefile
 make
 ```
 Our analysis code depends on libsqlite3, so please install its development files (header, static libraries) via your distributions packet manager.
-Before compiling the source code in the [analysis](analysis) directory, please update the Python version (`PYTHON_VERSION`, default: 3.9) in [analysis/Makefile](analysis/Makefile).
+Before compiling the source code in the [analysis](analysis) directory, please update the Python version (`PYTHON_VERSION`, default: 3.9) as well as the installation directory of your Python version (`PYTHON_DIR`) as well as your Python packages (`VIRTUALENV_DIR`) in [analysis/Makefile](analysis/Makefile).
 If necessary, please update the C compiler (default: `gcc`) as well.
 
 

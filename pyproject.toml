@@ -16,7 +16,7 @@ authors = [
 description = "Python package for EvalNet"
 readme = "README.md"
 license = {file = "LICENSE"}
-requires-python = ">=3.9,<3.13"
+requires-python = ">=3.9,<3.14"
 classifiers = [
   "Programming Language :: Python :: 3",
   "Operating System :: OS Independent",
