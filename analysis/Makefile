@@ -1,3 +1,7 @@
+PYTHON_VERSION=3.9# main version; only the number, no space afterwards
+PYTHON_DIR=Python-3.9/build
+VIRTUALENV_DIR=env
+
 CC=gcc
 CCFLAGS=
 
@@ -13,4 +17,4 @@ percentile.o: percentile.c
 	$(CC) $(CCFLAGS) -c $<
 
 mmm_ops.so: mmm_ops.c
-	$(CC) -O3 -march=native -mtune=native -ffast-math -fopenmp --std=gnu11 -lpython3.9 -I/usr/include/python3.9/ -I../evalnet/lib/python3.9/site-packages/numpy/core -fPIC --shared -o mmm_ops.so mmm_ops.c
+	$(CC) -O3 -march=native -mtune=native -ffast-math -fopenmp --std=gnu11 -I$(PYTHON_DIR)/include/python$(PYTHON_VERSION)/ -I$(VIRTUALENV_DIR)/lib/python$(PYTHON_VERSION)/site-packages/numpy/_core/include -fPIC --shared -o mmm_ops.so mmm_ops.c

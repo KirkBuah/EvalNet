@@ -15,7 +15,8 @@
 
 #include <Python.h>
 #define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION
-#include <numpy/noprefix.h>
+#include "numpy/ndarraytypes.h"
+#include "numpy/ndarrayobject.h"
 
 #ifdef MMM_OP_NAME
 static PyObject *
@@ -79,7 +80,8 @@ MMM_OP_NAME(PyObject *dummy, PyObject *args)
  fail:
     Py_XDECREF(arr1);
     Py_XDECREF(arr2);
-    PyArray_XDECREF_ERR(oarr);
+    PyArray_DiscardWritebackIfCopy(oarr);
+    Py_XDECREF(oarr);
     return NULL;
 }
 
