@@ -1,3 +1,7 @@
+PYTHON_VERSION=3.9# main version; only the number, no space afterwards
+PYTHON_DIR=/usr
+VIRTUALENV_DIR=../.venv
+
 CC=gcc
 CCFLAGS=
 
