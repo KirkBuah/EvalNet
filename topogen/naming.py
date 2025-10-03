@@ -11,6 +11,7 @@
 prefix = "data/"
 
 topo_folders = {
+    'HM' : "hammingmesh/",
     'HC' : "hypercubes/",
     'Torus' : "tori/",
     'FB' : "flatbutterflies/",
@@ -36,6 +37,7 @@ topo_folders = {
 }
 
 topo_filenames = {
+    'HM': lambda n,k: str(n) + "HammingMesh." + str(k) + ".adj.txt",
     'HC' : lambda n: str(n) + "DHypercube.adj.txt",
     'Torus' : lambda n,k: str(n) + "DTorus." + str(k) + ".adj.txt",
     'FB' : lambda n,k: str(n) + "DFlatButterfly." + str(k) + ".adj.txt",
