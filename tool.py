@@ -32,6 +32,7 @@ from topogen import validate_karyn as vkaryn
 from topogen import validate_mesh as vmesh
 from topogen import validate_tofu as vtofu
 from topogen import validate_cascadeDragonfly as vcdf
+from topogen import validate_testtopology as vtt
 from topogen.common import clean_topologies
 from analysis.results import ggplot, ggplot2, show
 from analysis.analyse import analyse
@@ -43,10 +44,16 @@ if __name__ == "__main__":
     subparser = parser.add_subparsers(help="type of operation", dest='type' ,required=True)
 
     # topology generator
-    parser_generate = subparser.add_parser("generate", help="generates a topology") 
+    parser_generate = subparser.add_parser("generate", help="generates a topology")
     parser_generate_subparser = parser_generate.add_subparsers(help='type of topology', dest='type', required=True)
 
     topology_generator_parsers = []
+
+    # Test topology
+    parser_generate_tt = parser_generate_subparser.add_parser("test_topology", help='generates a line')
+    parser_generate_tt.add_argument('n', type=int, help='specifies number of nodes')
+    parser_generate_tt.set_defaults(func=tg.TestTopologyGenerator().generate)
+    topology_generator_parsers.append(parser_generate_tt)
 
     # Hypercube
     parser_generate_hypercube = parser_generate_subparser.add_parser("hypercube", help='generates a n-dimensional Hypercube topology')
@@ -152,7 +159,7 @@ if __name__ == "__main__":
     parser_generate_kautz.set_defaults(func=tg.KautzGenerator().generate)
     topology_generator_parsers.append(parser_generate_kautz)
 
-    # Arrangement Network   
+    # Arrangement Network
     parser_generate_arrnetwork = parser_generate_subparser.add_parser('arrnetwork', help='generates arrangement network')
     parser_generate_arrnetwork.add_argument('n', type=int, help='maximum integer')
     parser_generate_arrnetwork.add_argument('k', type=int, help='permutations')
@@ -282,7 +289,7 @@ if __name__ == "__main__":
     parser_validate_slimfly.set_defaults(func=vbe.validate_brown_ext)
     # end Topology Validator
 
-    # Cleaning generated Toplogies 
+    # Cleaning generated Toplogies
     parser_clean = subparser.add_parser("clean", help='removes generated topologies')
     parser_clean.add_argument('-t', '--topos', type=str, nargs='+', default=[], help="all or topology folder e.g. hypercubes, tori,..")
     parser_clean.add_argument('-db', '--databases', type=str, nargs='+', default=[], choices=["all", "shortest_paths.db", "interference.db","edge_disjoint_paths.db", "low_connectivity.db"], help="all or databases")
@@ -300,7 +307,7 @@ if __name__ == "__main__":
     # Analysis
     parser_analyse = subparser.add_parser('analyse', help='analysing tool')
     parser_analyse_subparser = parser_analyse.add_subparsers(help='type of analysis', dest='type', required=True)
-    
+
     parser_analyse_shortest_paths = parser_analyse_subparser.add_parser('shortestpaths' , help='analyses shortest paths')
     parser_analyse_shortest_paths.add_argument('-s', '--sparse', action='store_true', help='use sparse matrices')
     parser_analyse_shortest_paths.add_argument('--parallel', action='store_true', help='uses parallel matrix multiplication')
@@ -339,7 +346,7 @@ if __name__ == "__main__":
         sub.add_argument('--size', help='Plot size (e.g. 10x12, inches).', default=None)
         sub.add_argument('-d', '--density', default=False, action='store_true', help="Plots should show density instead of raw values")
 
-    # disjoint paths & interference 
+    # disjoint paths & interference
     parser_plot_disjoint_paths = parser_plot_subparser.add_parser('disjointpaths' , help='plots histogram of disjoint paths')
     parser_plot_disjoint_paths.set_defaults(func=an.EdgeDisjointPathPlotter().plot_edge_disjoint_path_count)
 
@@ -358,7 +365,7 @@ if __name__ == "__main__":
         sub.add_argument('--size', help='Plot size (e.g. 10x12, inches).', default=None)
         sub.add_argument('-d', '--density', default=False, action='store_true', help="Plots should show density instead of raw values")
 
-    # low connectivity 
+    # low connectivity
     parser_plot_low_connectivity = parser_plot_subparser.add_parser('lowconnectivity' , help='low connectivity plot')
     parser_plot_low_connectivity.add_argument('-t', '--topos', type=str , nargs='+', choices=[topo for topo in tg.toponames.keys() if topo != 'JF'], required=True, help="specifies the topologies")
     parser_plot_low_connectivity.add_argument('-c', '--classes', type=int, nargs='+', required=True, help="specifies the classes defining the number of host a topology have")
@@ -376,18 +383,18 @@ if __name__ == "__main__":
     parser_show.add_argument('--explain', help='Only show EXPLAIN output.', action='store_true')
     parser_show.add_argument('--limit', help='Limit to this number of results (0 for no limit).', type=int, default=100)
     parser_show.set_defaults(func=show)
-    
+
     parser_ggplot = subparser.add_parser('ggplot', help='Execute a SQL query and plot results using python-ggplot. Uses matplotlib, pandas and the ggplot package.')
     parser_ggplot.set_defaults(func=ggplot)
-    
+
     parser_ggplot2 = subparser.add_parser('ggplot2', help='Execute a SQL query and plot results using R ggplot2. Requires sqldf and ggplot2 for R.')
     parser_ggplot2.set_defaults(func=ggplot2)
     parser_ggplot2.add_argument('--manual', help='Do not run R, just generate script and data.', action='store_true')
-    
+
     for sub in [parser_ggplot, parser_ggplot2]:
         sub.add_argument('-o', '--outfile', help='Output plot file name.', default="plot.pdf")
         sub.add_argument('--size', help='Plot size (e.g. 10x12, inches).', default="12x10")
-    
+
     for sub in [parser_show, parser_ggplot, parser_ggplot2]:
         sub.add_argument('-f', '--datafile', help='SQLite file to operate on', default="results.db")
         sub.add_argument('--sql', help='Use this complete SQL query.', default=None)

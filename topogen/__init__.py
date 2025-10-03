@@ -23,6 +23,7 @@ from .CascadeDragonflyGenerator import CascadeDragonflyGenerator
 from .SpectralflyGenerator import SpectralflyGenerator
 from .MegaflyGenerator import MegaflyGenerator
 from .PolarstarGenerator import PolarstarGenerator
+from .TestTopologyGenerator import TestTopologyGenerator
 
 from .Hypercube import Hypercube
 from .Torus import Torus
@@ -50,8 +51,10 @@ from .CascadeDragonfly import CascadeDragonfly
 from .Spectralfly import Spectralfly
 from .Megafly import Megafly
 from .Polarstar import Polarstar
+from .TestTopology import TestTopology
 
 toponames = {
+    'TT' : lambda N = -1: TestTopology(N),
     'HC' : lambda n = -1, N = -1: Hypercube(n,N),
     '3DTorus' : lambda k = -1, N = -1: Torus(3,k,N),
     '4DTorus' : lambda k = -1, N = -1: Torus(4,k,N),
