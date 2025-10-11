@@ -1,0 +1,7 @@
+*.pdf
+*.info
+__pycache__/
+*.o
+*.so
+.vscode
+data/
