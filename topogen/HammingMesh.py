@@ -45,7 +45,7 @@ class HammingMesh(Topology):
         self.N = self.total_edge_nodes
         self.R = self.get_number_of_routers(a, b)
         self.r = ceil((2*b)**(1/3))
-        self.nr = self.get_number_of_edges(a, b) / (self.N + self.R)
+        self.nr = int(self.get_number_of_edges(a, b) / (self.N + self.R))
         self.p = 1
         self.edge = self.total_edge_nodes
 
